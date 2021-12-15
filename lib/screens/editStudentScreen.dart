@@ -30,6 +30,7 @@ class EditStudentScreen extends StatelessWidget {
               ),
               TextField(
                 controller: _ageController,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(helperText: 'age'),
               ),
               const SizedBox(

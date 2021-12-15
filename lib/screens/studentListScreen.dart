@@ -11,38 +11,43 @@ class StudentListScreen extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: studentListNotifier,
       builder: (ctx, List<StudentModel> studList, child) {
-        return ListView.separated(
-            itemBuilder: (ctx, index) {
-              return ListTile(
-                title: Text(studList[index].name),
-                subtitle: Text(studList[index].age),
-                trailing: IconButton(
-                  onPressed: () {
-                    deleteStudent(studList[index].id);
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Colors.redAccent,
-                  ),
-                ),
-                leading: IconButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (ctx) {
-                      return EditStudentScreen(studList[index]);
-                    }));
-                  },
-                  icon: const Icon(
-                    Icons.edit,
-                    color: Colors.cyanAccent,
-                  ),
-                ),
-              );
-            },
-            separatorBuilder: (ctx, int) {
-              return const Divider();
-            },
-            itemCount: studList.length);
+        return studList.isEmpty
+            ? Center(
+                child: const Text('No Students!'),
+              )
+            : ListView.separated(
+                itemBuilder: (ctx, index) {
+                  return ListTile(
+                    title:
+                        Text('${studList[index].name} - ${studList[index].id}'),
+                    subtitle: Text(studList[index].age),
+                    trailing: IconButton(
+                      onPressed: () {
+                        deleteStudent(studList[index].id);
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                    leading: IconButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (ctx) {
+                          return EditStudentScreen(studList[index]);
+                        }));
+                      },
+                      icon: const Icon(
+                        Icons.edit,
+                        color: Colors.cyanAccent,
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (ctx, int) {
+                  return const Divider();
+                },
+                itemCount: studList.length);
       },
     );
   }
