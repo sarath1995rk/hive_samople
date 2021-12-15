@@ -36,7 +36,9 @@ class EditStudentScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              TextButton(onPressed: editStudentClicked, child: Text('Submit'))
+              TextButton(
+                  onPressed: () => editStudentClicked(context),
+                  child: Text('Submit'))
             ],
           ),
         ),
@@ -44,14 +46,17 @@ class EditStudentScreen extends StatelessWidget {
     );
   }
 
-  Future<void> editStudentClicked() async {
+  Future<void> editStudentClicked(BuildContext ctx) async {
     final name = _nameController.text.trim();
     final age = _ageController.text.trim();
     if (name.isEmpty || age.isEmpty) {
       return;
     }
 
-    var _student = StudentModel(name, age, stud.id);
-    editStudentInDb(_student);
+    final key = stud.key;
+    var _student = StudentModel(name, age);
+    print(_student);
+    editStudentInDb(_student, key);
+    Navigator.of(ctx).pop();
   }
 }

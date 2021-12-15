@@ -36,12 +36,13 @@ class AddStudentScreen extends StatelessWidget {
   Future<void> addStudentClicked() async {
     final name = _nameController.text.trim();
     final age = _ageController.text.trim();
-    final id = studentListNotifier.value.length;
     if (name.isEmpty || age.isEmpty) {
       return;
     }
 
-    var _student = StudentModel(name, age, id);
+    var _student = StudentModel(name, age);
     addStudent(_student);
+    _nameController.clear();
+    _ageController.clear();
   }
 }

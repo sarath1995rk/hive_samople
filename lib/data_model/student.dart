@@ -2,18 +2,16 @@ import 'package:hive/hive.dart';
 part 'student.g.dart';
 
 @HiveType(typeId: 1)
-class StudentModel {
+class StudentModel extends HiveObject {
   @HiveField(0)
-  int? id;
-  @HiveField(1)
   final String name;
-  @HiveField(2)
+  @HiveField(1)
   final String age;
 
-  StudentModel(this.name, this.age, [this.id]);
+  StudentModel(this.name, this.age);
 
   @override
   String toString() {
-    return 'StudentModel{id: $id, name: $name, age: $age}';
+    return 'StudentModel{name: $name, age: $age}';
   }
 }

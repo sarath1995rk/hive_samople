@@ -18,12 +18,11 @@ class StudentListScreen extends StatelessWidget {
             : ListView.separated(
                 itemBuilder: (ctx, index) {
                   return ListTile(
-                    title:
-                        Text('${studList[index].name} - ${studList[index].id}'),
+                    title: Text('${studList[index].name}'),
                     subtitle: Text(studList[index].age),
                     trailing: IconButton(
                       onPressed: () {
-                        deleteStudent(studList[index].id);
+                        deleteStudent(studList[index].key);
                       },
                       icon: const Icon(
                         Icons.delete,
